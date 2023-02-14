@@ -1,0 +1,220 @@
+{% extends 'intro.html' %}
+
+{% block content %}
+
+{% include 'header.html' %}
+
+{% load static %}
+
+<div id="middle" class="flex-fill">
+    <div id="settings">
+        <div class="page-title bg-transparent b-0">
+            <h1 class="h4 mt-4 mb-0 px-3 font-weight-normal text-center">
+                Account and API Settings
+            </h1>
+        </div>
+            <div class="row ">
+                <div class="col-12 col-xl-2 mb-3"></div>
+                <div class="col-12 col-xl-8 mb-3">
+                    <div class="portlet">
+                        <div class="portlet-header border-bottom">
+                            <span>Account Details</span>
+                        </div>
+                        <div class="portlet-body">
+
+                            <div class="row">
+                                <div class="col-12 col-md-4 col-xl-4 text-center">
+                                АВАТАР
+                                </div>
+                                <div class="col my-3">
+                                    <div class="input-group-over">
+                                        <div class="form-label-group">
+                                            <input v-model="user_data.email" required="" readonly="" placeholder="Email Address" id="account_email"
+                                                   type="email" class="form-control"
+                                                   value="john.doe@gmail.com">
+                                            <label for="account_email"><span class="text-danger">Email</span>
+                                                Address</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-label-group mt-3">
+                                        <input v-model="user_data.f_name" required="" placeholder="First Name" id="account_first_name"
+                                                type="text" value="" class="form-control">
+                                        <label for="account_first_name">First Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-label-group mt-3">
+                                        <input v-model="user_data.s_name" required="" placeholder="Last Name" id="account_last_name"
+                                                type="text" value="" class="form-control">
+                                        <label for="account_last_name">Last Name</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                              <div class="row ">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-label-group mt-3">
+                                        <input  v-model="user_data.username" required="" placeholder="First Name" id="account_username"
+                                                type="text" value="" class="form-control">
+                                        <label for="account_username">Username</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-label-group mt-3">
+                                        <input v-model="user_data.location" required="" placeholder="Last Name" id="account_location"
+                                                type="text" value="" class="form-control">
+                                        <label for="account_location">Address</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-12 pt-2">
+                                    <button @click="change_user_data()" type="submit" class="btn btn-primary">
+                                        <i class="fi fi-check"></i>
+                                        Changes Data
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+           <div class="row ">
+               <div class="col-2 mb-3"></div>
+                <div class="col-8 mb-3">
+
+                                <!-- start:portlet -->
+                                <div class="portlet">
+
+                                    <div class="portlet-header border-bottom">
+                                        <span>API`S Details</span>
+                                    </div>
+
+                                    <div class="portlet-body">
+                                        <div class="container py-6">
+
+                                        <div class="row">
+
+                                            <div class="col-3">
+                                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Telegram</a>
+                                                    <a class="nav-link bg-primary-active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">VK</a>
+                                                    <a class="nav-link bg-success-active" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Whatsapp</a>
+                                                    <a class="nav-link bg-danger-active" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Instagram</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-9">
+                                                <div class="tab-content" id="v-pills-tabContent">
+                                                    <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                                        <div class="accordion " id="accordionBottomBorder" data-aos="fade-up" data-aos-delay="250">
+                                                            <div class="card border-bottom bl-0 br-0 bt-0">
+                                                                <div class="card-header b-0 p-0 border bg-transparent" id="cleanHeadingBorderTwo">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="fs--18 btn btn-link btn-block btn-lg text-align-start text-decoration-none text-dark collapsed" type="button" data-toggle="collapse" data-target="#borderCollapseTwo" aria-expanded="false" aria-controls="borderCollapseTwo">
+                                                                            How connect telegram API?
+                                                                            <span class="group-icon float-end">
+                                                                                <i class="fi fi-arrow-start-slim"></i>
+                                                                                <i class="fi fi-arrow-down-slim"></i>
+                                                                            </span>
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+                                                                <div id="borderCollapseTwo" class="collapse" aria-labelledby="cleanHeadingBorderTwo" data-parent="#accordionBottomBorder">
+                                                                    <div class="card-body">
+                                                                        <p class="lead">
+                                                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-label-group mt-3">
+                                                                <input v-model="connect_api_data.phone_number"  placeholder="Phone Number" id="phone_tg_api"
+                                                                       type="text" value="" class="form-control">
+                                                                <label >Phone Number</label>
+                                                            </div>
+                                                            <div class="form-label-group mt-3">
+                                                                <input v-model="connect_api_data.app_id" placeholder="AppId" id="appid_tg_api"
+                                                                       type="text" value="" class="form-control">
+                                                                <label >AppId</label>
+                                                            </div>
+                                                            <div class="form-label-group mt-3">
+                                                                <input v-model="connect_api_data.token" placeholder="Token" id="token_tg_api"
+                                                                       type="text" value="" class="form-control">
+                                                                <label >Token</label>
+                                                            </div>
+                                                            <div  class="mt-3">
+                                                                <button :class="{'hide': show_tg_connection}" @click="connect_api('telegram')" type="button" class="btn btn-primary">
+                                                                    <i class="fi fi-share"></i>
+                                                                    Connect api
+                                                                </button>
+                                                                <button :class="{'hide': show_tg_reconnection}" @click="connect_api('telegram')" type="button" class="btn btn-primary">
+                                                                    <i class="fi fi-share"></i>
+                                                                    Reconnect api
+                                                                </button>
+                                                                <div class="row" :class="{'hide': enter_code_1}">
+                                                                    <div class="col-8 mb-3 ">
+                                                                         <div class="form-label-group mt-3 ">
+                                                                            <input v-model="tg_code" placeholder="Your code" id="code_tg_api"
+                                                                                   type="text" value="" class="form-control">
+                                                                            <label >Your code № 1</label>
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="col-4 mb-3 ">
+                                                                         <button @click="send_tg_code(1)" type="button" class=" mt-3 btn btn-primary">
+                                                                            <i class="fi fi-send"></i>
+                                                                            Send
+                                                                        </button>
+                                                                     </div>
+                                                                </div>
+                                                                <div class="row" :class="{'hide': enter_code_2}">
+                                                                    <div class="col-8 mb-3 ">
+                                                                         <div class="form-label-group mt-3 ">
+                                                                            <input v-model="tg_code" placeholder="Your code" id="code_tg_api_2"
+                                                                                   type="text" value="" class="form-control">
+                                                                            <label >Your code № 2</label>
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="col-4 mb-3 ">
+                                                                         <button @click="send_tg_code(2)" type="button" class=" mt-3 btn btn-primary">
+                                                                            <i class="fi fi-send"></i>
+                                                                            Send
+                                                                        </button>
+                                                                     </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                        <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                                        <p>Ex consequat commodo adipisicing exercitation aute excepteur occaecat ullamco duis aliqua id magna ullamco eu. Do aute ipsum ipsum ullamco cillum consectetur ut et aute consectetur labore. Fugiat laborum incididunt tempor eu consequat enim dolore proident. Qui laborum do non excepteur nulla magna eiusmod consectetur in. Aliqua et aliqua officia quis et incididunt voluptate non anim reprehenderit adipisicing dolore ut consequat deserunt mollit dolore. Aliquip nulla enim veniam non fugiat id cupidatat nulla elit cupidatat commodo velit ut eiusmod cupidatat elit dolore.</p>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                                        <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- end:portlet -->
+
+                            </div>
+            </div>
+        <script src="{% static 'assets/myjs/settings.js'%}?4"></script>
+    </div>
+</div>
+{% endblock content %}

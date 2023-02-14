@@ -1,0 +1,122 @@
+{% load static %}
+<div id="wrapper" class="d-flex align-items-stretch flex-column">
+    <header id="user_sess" class="shadow-xs">
+        <div class="container-xlg p-0-md p-0-xs">
+            <div class="container-fluid p-0-md p-0-xs position-relative">
+                <nav class="navbar navbar-expand-lg navbar-light justify-content-lg-between justify-content-md-inherit">
+                    <div class="align-items-start">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="{% static 'pictures/logo.png'%}" width="190" height="40" alt="...">
+                        </a>
+                    </div>
+                    <!-- NAVIGATION -->
+                    <div class="collapse navbar-collapse px-5 pl-0-xs pr-0-xs" id="navbarMainNav">
+                        <!-- MOBILE MENU NAVBAR -->
+                        <div class="navbar-xs d-none">
+                            <!-- mobile menu button : close -->
+                            <button class="navbar-toggler pt-0" type="button" data-toggle="collapse"
+                                    data-target="#navbarMainNav" aria-controls="navbarMainNav" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                <svg width="20" viewBox="0 0 20 20">
+                                    <path d="M 20.7895 0.977 L 19.3752 -0.4364 L 10.081 8.8522 L 0.7869 -0.4364 L -0.6274 0.977 L 8.6668 10.2656 L -0.6274 19.5542 L 0.7869 20.9676 L 10.081 11.679 L 19.3752 20.9676 L 20.7895 19.5542 L 11.4953 10.2656 L 20.7895 0.977 Z"></path>
+                                </svg>
+                            </button>
+                            <!--
+                                Optional Mobile Menu Logo
+                                Logo : height: 70px max
+                            -->
+                            <a class="navbar-brand" href="index.html">
+                                <img src="assets/images/logo/logo_dark.svg" width="110" height="70" alt="...">
+                            </a>
+                        </div>
+                        <!-- /MOBILE MENU NAVBAR -->
+                        <!-- Dropdowns -->
+                        <ul class="navbar-nav align-items-center">
+                            <!-- Features -->
+                            <li class="nav-item dropdown">
+                                <a href="/chats" class="nav-link nav-link-caret-hide dropdown-toggle"
+                                   aria-haspopup="true" aria-expanded="false" id="Chats">
+                                    <i class="fi fi-chat float-start m-0"></i>
+                                    <span>Chats</span>
+                                </a>
+                            </li>
+                            <!--  -->
+                            <li class="nav-item dropdown">
+                                <a href="/contacts" class="nav-link nav-link-caret-hide dropdown-toggle"
+                                   aria-haspopup="true" aria-expanded="false" id="Contacts">
+                                    <i class="fi fi-users float-start m-0"></i>
+                                    <span>Contacts</span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#!" class="nav-link nav-link-caret-hide dropdown-toggle"
+                                   aria-haspopup="true" aria-expanded="false" id="Mailing">
+                                    <i class="fi fi-envelope float-start m-0"></i>
+                                    <span>MassMailing</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /Dropdowns -->
+                    </div>
+                    <!-- /NAVIGATION -->
+                    <!-- OPTIONS -->
+                    <ul class="list-inline list-unstyled mb-0 d-flex align-items-end">
+                        <!-- messages  d-none d-md-inline-block -->
+                        <li class="list-inline-item ml--6 mr--6 dropdown">
+                            <a href="#" id="dropdownMessageOptions"
+                               class="btn btn-sm rounded-circle btn-light dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false" aria-haspopup="true">
+                                <!-- badge -->
+                                <span class="badge badge-danger shadow-danger-md animate-pulse fs--10 p--3 mt--n3 position-absolute end-0">1</span>
+                                <span class="group-icon">
+											<i class="fi fi-envelope-2"></i>
+											<i class="fi fi-close"></i>
+										</span>
+                            </a>
+
+                        </li>
+                        <li class="list-inline-item ml--6 mr--6 dropdown">
+                            <a href="#" id="dropdownAccountOptions"
+                               class="btn btn-sm btn-light dropdown-toggle btn-pill pl--12 pr--12"
+                               data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+
+										<span class="group-icon m-0">
+											<!-- <i class="fi fi-user-female"></i> -->
+											<i class="fi w--15 fi-user-male"></i>
+											<i class="fi w--15 fi-close"></i>
+										</span>
+                                <span class="fs--14 d-none d-sm-inline-block font-weight-medium">{ user_name }</span>
+                            </a>
+                            <div aria-labelledby="dropdownAccountOptions"
+                                 class="prefix-link-icon prefix-icon-dot dropdown-menu dropdown-menu-clean dropdown-menu-navbar-autopos dropdown-menu-invert dropdown-click-ignore p-0 mt--18 fs--15 w--300">
+
+                                <div class="dropdown-header fs--14 py-4">
+
+                                    <!-- profile image -->
+                                    <div class="w--60 h--60 rounded-circle bg-light bg-cover float-start"
+                                         style="background-image:url('../../html_frontend/demo.files/images/icons/user80.png')"></div>
+                                    <span class="d-block font-weight-medium text-truncate fs--16">{ user_name }</span>
+                                    <span class="d-block text-muted font-weight-medium text-truncate">{ email }</span>
+                                </div>
+                                <a href="/settings" class="dropdown-item text-truncate font-weight-medium">
+										Settings
+                                    <small class="d-block text-muted">set up api connection</small>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="/logout"
+                                   class="prefix-icon-ignore dropdown-footer dropdown-custom-ignore font-weight-medium pt-3 pb-3">
+                                    <i class="fi fi-power float-start"></i>
+                                    Log Out
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- /OPTIONS -->
+                </nav>
+            </div>
+            <!-- /NAVBAR -->
+        </div>
+        <script src="{% static 'assets/myjs/header_fill.js'%}?4"></script>
+
+    </header>
+    <!-- /HEADER -->

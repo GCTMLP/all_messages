@@ -1,0 +1,217 @@
+{% extends 'intro.html' %}
+
+{% block content %}
+
+{% include 'header.html' %}
+
+{% load static %}
+<div id="contacts" class="flex-fill">
+    <div id="questions" class="row">
+
+			<div class=" col-12 col-lg-1">
+			</div>
+			<div class=" col-12 col-lg-10">
+				<section class="mb-0">
+					<div class="bg-white p-4 rounded">
+						<div class="row">
+							<div class="col-12 col-md-2">
+								<h2 class="h4 mb-3 text-primary font-weight-normal">
+									Contacts
+								</h2>
+							</div>
+							<div class="col-12 col-md-10 ">
+
+							</div>
+						</div>
+
+						<div class="row pt-5">
+							<div class="col-12 col-md-6">
+								<select @change="change_count(filter.limit)" id="count_info" v-model="filter.limit" class="form-control-sm bs-select">
+										<option value="5">5</option>
+										<option value="10">10</option>
+										<option value="15">15</option>
+										<option value="all">all</option>
+								</select>
+							</div>
+							<div class="col-12 col-md-4 ">
+								<input type="text" v-model="filter.search" class="form-control position-absolute top-0 end-0  form-control-sm mb-3" placeholder="Поиск">
+							</div>
+							<div class="col-12 col-md-2 text-right ">
+								<button  @click="get_contacts(1)" type="button" class="btn btn  rounded-circle btn-outline-primary mb-2"><i class="fi fi-search"></i></button>
+								<button  @click="clean_search(1)" type="button" class="btn btn  rounded-circle btn-outline-secondary mb-2"><i class="fi mdi-format_clear"></i></button>
+							</div>
+						</div>
+
+						<div  class="position-relative border-bottom pt-3">
+                            <div id="clipboard_5" class="p--15 bg-white rounded">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Numbers/Messengers</th>
+                                            <th scope="col">Comment</th>
+											 <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr v-for="(value, id, index) in contacts">
+                                            <td class="w--220">{ value.name }</td>
+                                            <td class="w--600">
+                                               <div class="row">
+
+													<div class="col-3">
+														<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+															<a v-for="(mess, phone) in value.contact" :class="{'active': mess.select}" class="nav-link bg-primary-active " v-bind:id="'v-pills-'+phone+'-tab'" data-toggle="pill" v-bind:href="'#v-pills-'+phone" role="tab" v-bind:aria-controls="'v-pills-'+phone"  v-bind:aria-selected="mess.select">{ phone }</a>
+														</div>
+													</div>
+
+													<div class="col-9">
+														<div class="tab-content" id="v-pills-tabContent">
+															<div v-for="(messengers, phone) in value.contact" :class="{'show': messengers.select}" class="tab-pane fade active"  v-bind:id="'v-pills-'+phone" role="tabpanel" v-bind:aria-labelledby="'v-pills-'+phone+'-tab'">
+																<div v-for="messenger in messengers.mess" class="d-flex mb-3">
+																	<div class="badge badge-primary badge-soft badge-ico-sm rounded-circle float-start">
+																		<i class="fi fi-envelope"></i>
+																	</div>
+																	<p class="text-dark font-weight-light mb-0 pl--12 pr--12">
+																		{ messenger }
+																	</p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+                                            </td>
+                                            <td class="w--450">{ value.comment }</td>
+											<td class="w--120">
+												<div class="row">
+													 <div class="col-6">
+														 <button type="button" class="position-absolute top-0 end-0 btn btn-sm rounded-circle btn-outline-primary mb-2" data-toggle="modal" v-bind:data-target="'#md'+index" tabindex="-1" >
+															<i class="fi fi-pencil"></i>
+														</button>
+
+														<!-- Modal -->
+														<div class="modal fade" v-bind:id="'md'+index" tabindex="-1" role="dialog" aria-hidden="true">
+															<div class="modal-dialog modal-lg" role="document">
+																<div class="modal-content">
+
+																	<div class="modal-header">
+																		<h5 class="modal-title" >Change data</h5>
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<span class="fi fi-close fs--18" aria-hidden="true"></span>
+																		</button>
+																	</div>
+																	<div class="modal-body">
+																		<input v-model="value.name" required placeholder="name"  type="text" class="form-control">
+																		<label></label>
+																		<input v-model="value.comment" required placeholder="comment" type="text"  class="form-control">
+																		<label></label>
+																	</div>
+																	<div class="modal-footer">
+																		<button @click="save_change(id)" type="button" class="btn btn-primary">
+																			<i class="fi fi-check"></i>
+																			Save changes
+																		</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													 </div>
+													 <div class="col-6">
+														 <button type="button" class="btn btn-sm rounded-circle btn-outline-danger mb-2">
+															<i class="fi fi-thrash"></i>
+														</button>
+													 </div>
+												 </div>
+											</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+						</div>
+
+							<nav aria-label="pagination">
+								<ul class="pagination pagination-pill justify-content-center ">
+									<li class="page-item">
+										<a class="page-link" @click="minus_page()" v-if="filter.page != 1" >Previous</a>
+									</li>
+									<li v-for="i in 5" class="page-item">
+										<a v-if="filter.pages >= i+filter.pages_big" class="page-link" v-bind:class="{ 'bg-primary-soft': i+filter.pages_big == filter.page }"  @click="change_page_big(i+filter.pages_big)">{ i+filter.pages_big }</a>
+									</li>
+									<li class="page-item">
+										<a v-if="filter.page != filter.pages" @click="plus_page()" class="page-link" >Next</a>
+									</li>
+
+								</ul>
+							</nav>
+
+						<div class="row">
+							<div class="col-12 col-md-8 ">
+							</div>
+							<div class="col-12 col-md-2 ">
+								<div class="dropdown">
+									<button class="btn btn-primary btn-soft dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span>Import Contacts</span>
+										<span class="group-icon">
+											<i class="fi fi-arrow-down"></i>
+											<i class="fi fi-arrow-up"></i>
+										</span>
+									</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+										<h6 class="dropdown-header">Import from</h6>
+										<a class="dropdown-item" href="#">
+											<i class="fi fi-folder-full"></i>
+											Telegram
+										</a>
+										<a class="dropdown-item" href="#">
+											<i class="fi fi-folder-full"></i>
+											Vkontakte
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 col-md-2 ">
+								<button type="button" class="position-absolute top-0 end-0 btn btn-primary btn-soft mb-3" data-toggle="modal" data-target="#exampleModalLg">
+									<i class="fi fi-users"></i>
+									Add Contact
+								</button>
+							</div>
+						</div>
+					</div>
+
+				</section>
+			</div>
+		<div class="modal fade" id="exampleModalLg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLg" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabelLg">Add Contact</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span class="fi fi-close fs--18" aria-hidden="true"></span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input v-model="add.name" required placeholder="name"  type="text" class="form-control">
+						<label></label>
+						<input v-model="add.comment" required placeholder="comment" type="text"  class="form-control">
+						<label></label>
+						<input v-model="add.phones" required placeholder="phones, [separator ';']" type="text"  class="form-control">
+						<label></label>
+					</div>
+					<div class="modal-footer">
+						<button @click="add_contact()" type="button" class="btn btn-primary">
+							<i class="fi fi-plus"></i>
+							Add
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<script src="{% static 'assets/myjs/contacts.js'%}?4"></script>
+			</div>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock content %}

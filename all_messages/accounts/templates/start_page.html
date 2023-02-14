@@ -1,0 +1,83 @@
+{% extends 'intro.html' %}
+
+{% block content %}
+
+{% include 'header.html' %}
+
+{% load static %}
+
+<div id="middle" class="flex-fill">
+    <section class="text-center">
+
+
+        <div class="row">
+            <div class="col-12 col-lg-4">
+                <div class="mt-6">
+                    <a href="/chats" class="btn btn-primary btn-soft">
+                        <i class="fi fi-arrow-left"></i>
+                        Go to Chats
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="pb--30">
+                    <h2 class="h4 text-muted mb-4">
+                        Welcome to our service
+                    </h2>
+                    <p>
+                        You can collect your messages from any services here
+                    </p>
+                    <div class="d-flex mb-3">
+                        <div class="badge badge-success badge-soft badge-ico-sm rounded-circle float-start">
+                            <i class="fi fi-cog"></i>
+                        </div>
+                        <p class="text-dark font-weight-light mb-0 pl--12 pr--12">
+                           set up api connection
+                        </p>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="badge badge-success badge-soft badge-ico-sm rounded-circle float-start">
+                            <i class="fi fi-users"></i>
+                        </div>
+                        <p class="text-dark font-weight-light mb-0 pl--12 pr--12">
+                            fill contact table
+                        </p>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <div class="badge badge-success badge-soft badge-ico-sm rounded-circle float-start">
+                            <i class="fi fi-send"></i>
+                        </div>
+                        <p class="text-dark font-weight-light mb-0 pl--12 pr--12">
+                            enjoy messaging
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="mt-6">
+                    <a href="/settings" class="btn btn-primary btn-soft">
+
+                        Setting your API
+                        <i class="fi fi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-2">
+            </div>
+            <div class="col-12 col-lg-8">
+                <!-- svg iamge -->
+                <img src="{% static 'pictures/product_3.png'%}" alt="...">
+                <!-- back button -->
+            </div>
+            <div class="col-12 col-lg-2">
+            </div>
+        </div>
+
+    </section>
+
+</div>
+{% endblock content %}

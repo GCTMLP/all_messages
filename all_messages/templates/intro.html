@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<title>AM</title>
+		<meta name="description" content="...">
+		<meta http-equiv="Cache-control" content="NO-CACHE">
+
+        <meta name="viewport" content="width=device-width, maximum-scale=5, initial-scale=1, user-scalable=0">
+
+
+		<script src="{% static 'assets/js/core.min.js'%}"></script>
+		<script src="{% static 'assets/js/vue.js'%}"></script>
+
+		<script src="{% static 'assets/vendor/axios/dist/axios.js'%}"></script>
+
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
+        <link rel="preconnect" href="https://fonts.googleapis.com/">
+        <link rel="preconnect" href="https://fonts.gstatic.com/">
+
+        <link rel="stylesheet" href= "{% static 'assets/css/core.min.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor_bundle.min.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/datatables.min.css'%}">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
+
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="apple-touch-icon" href="demo.files/logo/icon_512x512.png">
+
+		<link rel="manifest" href="assets/images/manifest/manifest.json">
+		<meta name="theme-color" content="#377dff">
+
+	</head>
+
+<body class="layout-admin header-sticky" data-s2t-class="btn-primary btn-sm bg-gradient-default rounded-circle b-0">
+<script src="{% static 'assets/js/vue-toastr.umd.min.js'%}?3"></script>
+	  {% block content %}{% endblock %}
+
+
+
+
+
+</body>

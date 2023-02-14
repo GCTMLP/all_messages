@@ -1,0 +1,145 @@
+{% extends 'intro.html' %}
+
+{% block content %}
+
+{% include 'header.html' %}
+
+{% load static %}
+<div id="middle" class="flex-fill">
+<div id="chats" class="row">
+    <div class="col-12 col-lg-2">
+        <div class="portlet">
+            <div class="portlet-header">
+                <span class="d-block text-muted text-truncate font-weight-medium">
+                    Contacts
+                </span>
+            </div>
+            <div class="portlet-body">
+                <div data-spy="scroll" data-target="#list-example" data-offset="0" class="h--600 scrollable-vertical scrollable-styled-dark">
+                     <a v-for="(value, name) in chats" @click="created(value.id, name)" class="clearfix d-block dropdown-item font-weight-medium p-3 rounded overflow-hidden border-bottom border-light">
+                         <span v-show="value.new" class="badge badge-success float-end font-weight-normal mt-1">new</span>
+                         <i class="fi fi-support-1 d-middle float-start fs--20 bg-light w--40 h--40 rounded-circle text-center"></i>
+                         <p class="fs--14 m-0 text-truncate font-weight-normal">
+                           { name }
+                         </p>
+                         <small class="d-block fs--11 text-muted">
+                             { value.time } { value.id }
+                         </small>
+                     </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-10">
+        <div class="portlet">
+            <div class="portlet-header">
+                <div class="position-relative border-bottom pt-3">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex pb--20">
+                                <span class="sow-util-initials h6 m-0 w--50 h--50 rounded-circle d-inline-flex justify-content-center align-items-center js-sowformstringified" style="background: rgb(212, 228, 247);">JD</span>
+                                <h3 class="d-inline-flex justify-content-center align-items-center">&nbsp;{ bigname } </h3>
+
+                            </div>
+                            <button type="button" class="btn btn-primary btn-soft mb-3 position-absolute top-0 end-0 " data-toggle="modal" data-target="#exampleModalSm">
+                                    <i class="fi fi-task-list"></i>
+                                    Comments
+                            </button>
+                            </div>
+                                <div class="modal fade" id="exampleModalSm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelSm" aria-hidden="true">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabelSm">About { bigname }</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span class="fi fi-close fs--18" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                        { comment }
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">
+                                                <i class="fi fi-check"></i>
+                                                Save
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div data-spy="scroll" data-target="#list-example" data-offset="0" class="h--600 scrollable-vertical scrollable-styled-dark">
+                    <div v-for="mess in messages">
+                         <div class="row pl-3 pr-3">
+                             <div v-show="!mess.in_out" class=" col-12 col-lg-6"> </div>
+                             <div class="col-12 col-lg-6">
+                                 <!-- MESSAGE -->
+                                    <div class="border-bottom border-light">
+                                            <div class="clearfix  py-1">
+
+                                                <span class="float-start font-weight-medium fs--14 text-primary">
+                                                    from { mess.messenger }<br>
+                                                </span>
+                                                <span class="float-end px-4 mt-1">
+                                                    <small class="d-block text-muted">{ mess.time }</small>
+                                                </span>
+                                            </div>
+                                            <p class="fs--14  pt-1">
+                                                { mess.message }
+                                            </p>
+                                    </div>
+                                  <!-- /MESSAGE -->
+                             </div>
+                             <div class=" col-12 col-lg-6"> </div>
+                         </div>
+                    </div>
+                </div>
+            <div class="row " v-show="show_send">
+                <div class=" col-12 col-lg-9 pl-4">
+                    <div class="form-label-group mb-3 ">
+                        <textarea v-model="text" placeholder="Textarea" id="description" class="form-control" rows="3"></textarea>
+                        <label for="description">Textarea</label>
+                    </div>
+                </div>
+                <div class=" col-12 col-lg-1">
+                     <button @click="send_message()" type="button" class="btn btn-primary btn-soft mb-3">
+                         <i class="fi fi-send"></i>
+                         Send
+                     </button>
+                </div>
+                <div class=" col-12 col-lg-2">
+                    <label class="form-checkbox form-checkbox-primary">
+                        <input v-model="checkedMess" type="checkbox" id="tg" value="telegram"  >
+                        <i></i> Telegram
+                    </label>
+                    <label class="form-checkbox form-checkbox-primary">
+                        <input v-model="checkedMess" type="checkbox" id="wt" value="whatsapp" >
+                        <i></i> Whatsapp
+                    </label>
+                    <label class="form-checkbox form-checkbox-primary">
+                        <input v-model="checkedMess" type="checkbox" id="vk" value="vkontakte"  >
+                        <i></i> VKontakte
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="{% static 'assets/myjs/chats.js'%}?4"></script>
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock content %}
