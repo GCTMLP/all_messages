@@ -9,6 +9,16 @@ updating....
 
 This is service, that aggregates messages from your favourite messengers and social networks
 
+How does it works
+
+Technical side: link to presentation
+
+1. You registrate on All_Messages
+2. Setup your personal data
+3. Setup connection to API 
+4. Add or export contacts
+5. Enjoy Messaging different messengers and social networks in one place
+
 Technology stack is:
   - Python3
   - Nginx
