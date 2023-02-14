@@ -25,6 +25,15 @@ Technology stack is:
 
 # How to deploy
 
+Deploy by docker-compose 
+```
+docker-compose -f docker-compose.prod.yml up -d --build
+docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
+docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear 
+```
+
+Deploy by yourself
+
 1. Clone the repository
 ```
 git clone https://github.com/GCTMLP/all_messages.git
@@ -74,9 +83,32 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 ```
 
 7. Set up nginx
-example configuration at "/etc/nginx/sites-enabled/hasker"
+example configuration at "/etc/nginx/sites-enabled/all_messages"
 ```
-updating....
+
+server {
+
+    listen 443 ssl;
+    ssl_certificate /etc/ssl/yourcrt.crt;
+    ssl_certificate_key /etc/ssl/yourkey.key;
+    server_name yourservername;
+
+    location / {
+       uwsgi_pass unix:///run/uwsgi/app/all_messages/socket;
+       include uwsgi_params;
+       uwsgi_read_timeout 300s;
+       client_max_body_size 32m;
+    }
+
+    location /static/ {
+        alias /all_message_project/all_message/static/;
+    }
+    
+    location /media/ {
+        alias /all_message_project/all_message/media/;
+    }
+
+}
 ```
 
 8. Import styles from ```https://github.com/GCTMLP/html_styles``` and add them to all_messages/static/assets
