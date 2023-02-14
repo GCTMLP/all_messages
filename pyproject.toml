@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "all-message"
+version = "1.0"
+description = "my super project"
+authors = ["I_Lipa"]
+readme = "README.md"
+packages = [{include = "all_message"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+channels = "^4.0.0"
+django = "^4.1.6"
+django-crispy-forms = "^1.14.0"
+daphne = "^4.0.0"
+psycopg2-binary = "^2.9.5"
+telethon = "^1.27.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
