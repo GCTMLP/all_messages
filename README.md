@@ -57,7 +57,7 @@ cd all_messages
 poetry update
 ```
 
-3. Create database named "hasker"
+3. Create database named "all_messages"
 ```
 sudo -u postgres psql
 CREATE DATABASE all_messages;
@@ -65,12 +65,12 @@ CREATE USER myprojectuser WITH PASSWORD 'password';
 GRANT ALL PRIVILEGES ON DATABASE all_messages TO myprojectuser;
 ```
 
-4. Write your mysql configuration at "config/settings.py"
+4. Write your postgresql configuration at "config/settings.py"
 examlpe:
 ```
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'all_messages',
         'USER': 'myprojectuser',
         'PASSWORD': 'password',
