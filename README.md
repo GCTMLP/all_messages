@@ -121,4 +121,4 @@ server {
 }
 ```
 
-8. Import styles from ```https://github.com/GCTMLP/html_styles``` and add them to all_messages/static/assets
+8. Import styles from ```https://github.com/GCTMLP/assets``` and add them to all_messages/static/assets
