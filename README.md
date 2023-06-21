@@ -11,7 +11,7 @@ This is service, that aggregates messages from your favourite messengers and soc
 
 How does it works
 
-Technical side: link to presentation
+Technical side: https://docs.google.com/presentation/d/1k5LxMK-wfGlIWsS6zLR0Juw2I9ygmeiq/edit?usp=drive_link&ouid=116991776890197451217&rtpof=true&sd=true
 
 1. You registrate on All_Messages
 2. Setup your personal data
